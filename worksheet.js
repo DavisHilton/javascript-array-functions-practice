@@ -7,7 +7,7 @@ const characters = [
         gender: 'male',
     },
     {
-        name: 'Darth Vader',
+        name: 'Darth Vader', 
         height: 202,
         mass: 136,
         eye_color: 'yellow',
@@ -29,23 +29,80 @@ const characters = [
     },
 ];
 
-//***MAP***
+//***======================MAP=====================***
 //1. Get array of all names
+const allNames = characters.map(character=>character.name)
+console.log(allNames);
+
 //2. Get array of all heights
+const height = characters.map(character=>character.height);
+console.log(height);
+
 //3. Get array of objects with just name and height properties
+const nameAndHeight = characters.map((character)=>({
+    name : character.name, 
+    height: character.height,}));
+console.log(nameAndHeight);
+
 //4. Get array of all first names
 
-//***REDUCE***
+const firstName = characters.map(character=>character.name.split(' ')[1]);
+
+console.log(firstName);
+
+//***===================REDUCE================================***
 //1. Get total mass of all characters
+const totalMass = characters.reduce((acc,cur) => {
+// console.log('The value of accumulator: ', acc);
+// console.log('The value of currentValue: ', cur);
+
+    return acc + cur.mass
+}, 0);
+
+console.log(totalMass);
+
+
 //2. Get total height of all characters
+const totalHeight = characters.reduce((acc, curr) => acc + curr.height, 0);
+console.log(totalHeight);
+
 //3. Get total number of characters by eye color
+const characterByEyeColor = characters.reduce((acc, curr) => {
+    const color = curr.eye_color;
+    if(acc[color]){
+        acc[color] = acc[color] +1;
+    }
+    else{
+        acc[color] = 1;
+    }
+    return acc;
+}, {})
+
+console.log(characterByEyeColor);
+
 //4. Get total number of characters in all the character names
+const totalNumberOfCharacters = characters.reduce((acc, curr) => acc + curr.name.length, 0);
+
+console.log(totalNumberOfCharacters);
 
 //***FILTER***
 //1. Get characters with mass greater than 100
+// const greater100Characters = characters.filter(character=>character.mass>100);
+// console.log(greater100Characters);
+
 //2. Get characters with height less than 200
+
+// const shorterCharacters = characters.filter(character=>character.height< 200);
+// console.log(shorterCharacters);
+
+
 //3. Get all male characters
+// const maleCharters = characters.filter(male=>male.gender === "male");
+// console.log(maleCharters);
+
 //4. Get all female characters
+// const femaleCharters = characters.filter(female=>female.gender === "female");
+// console.log(femaleCharters);
 
 //***SORT***
 //1. Sort by mass
